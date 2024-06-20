@@ -14,7 +14,6 @@ def insert_topic(request):
 
 
 
-
 # We have got parant table Object by using get_or_create
 '''
 def insert_webpage(request):
@@ -41,7 +40,7 @@ def insert_webpage(request):
 
     #TO=Topic.objects.get(topic_name=tn)
     '''We can use get method to get the Parent Table Object but if parent table object is 
-    not available it throws an error'''
+    not av bailable it throws an error'''
     LTO=Topic.objects.filter(topic_name=tn)
     if LTO:
         TO=LTO[0]
@@ -50,9 +49,6 @@ def insert_webpage(request):
         return HttpResponse('Webpage is Created')
     else:
         return HttpResponse('Given Topic is Not present in My Parent Table')
-
-
-
 
 
 
@@ -79,3 +75,29 @@ def insert_access(request):
     AO.save()
 
     return HttpResponse('Access Is Created')
+
+
+
+
+
+
+
+
+def display_topics(request):
+    QLTO=Topic.objects.all()
+    d={'QLTO':QLTO}
+    return render(request,'display_topics.html',d)
+
+
+
+def display_webpages(request):
+
+    QLWO=Webpage.objects.all()
+    d={'QLWO':QLWO}
+    return render(request,'display_webpages.html',d)
+
+
+def display_access(request):
+    QLAO=AccessRecord.objects.all()
+    d={'QLAO':QLAO}
+    return render(request,'display_access.html',d)
